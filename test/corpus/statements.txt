@@ -61,19 +61,20 @@ fn f() {
       (fn_definition
         (identifier)
         (param_list)
-        (body_item
-          (variable_declaration
-            (non_fn_definition
-              (identifier)
-              (string))))
-        (body_item
-          (variable_declaration
-            (non_fn_definition
-              (identifier)
-              (string))))
-        (body_item
-          (return_stmt
-            (identifier)))))))
+        (function_body
+          (body_item
+            (variable_declaration
+              (non_fn_definition
+                (identifier)
+                (string))))
+          (body_item
+            (variable_declaration
+              (non_fn_definition
+                (identifier)
+                (string))))
+          (body_item
+            (return_stmt
+              (identifier))))))))
 
 ==================
 Basic math
@@ -87,8 +88,8 @@ val = 1 + 2
   (body_item
     (variable_declaration
       (non_fn_definition
-        (identifier)
-        (binary_expr
+        name: (identifier)
+        value: (binary_expr
           lhs: (number)
           operator: (binary_operator)
           rhs: (number))))))
@@ -122,8 +123,8 @@ val = 1 + 2 / 4
   (body_item
     (variable_declaration
       (non_fn_definition
-        (identifier)
-        (binary_expr
+        name: (identifier)
+        value: (binary_expr
           lhs: (number)
           operator: (binary_operator)
           rhs: (binary_expr
@@ -145,17 +146,19 @@ yLine(length = diameter)
     (expr_stmt
       (fn_call
         callee: (identifier)
-        unlabeledArg: (number)
-        (labeledArg
-          label: (identifier)
-          arg: (number)))))
+        arguments: (argument_list
+          unlabeledArg: (number)
+          (labeledArg
+            label: (identifier)
+            arg: (number))))))
   (body_item
     (expr_stmt
       (fn_call
         callee: (identifier)
-        (labeledArg
-          label: (identifier)
-          arg: (identifier))))))
+        arguments: (argument_list
+          (labeledArg
+            label: (identifier)
+            arg: (identifier)))))))
 
 ==================
 Pipes
@@ -169,13 +172,14 @@ val = 1 |> f(%)
   (body_item
     (variable_declaration
       (non_fn_definition
-        (identifier)
-        (binary_expr
+        name: (identifier)
+        value: (binary_expr
           lhs: (number)
           operator: (binary_operator)
           rhs: (fn_call
             callee: (identifier)
-            unlabeledArg: (pipe_sub)))))))
+            arguments: (argument_list
+              unlabeledArg: (pipe_sub))))))))
 
 ==================
 Imports
@@ -215,8 +219,10 @@ import Axis2d, Face from "std::types"
 (kcl_program
   (body_item
     (import_stmt
-      (identifier)
-      (identifier)
+      (import_item
+        (identifier))
+      (import_item
+        (identifier))
       (string))))
 
 ==================
@@ -229,8 +235,7 @@ Multiline comment
 ---
 
 (kcl_program
-  (body_item
-    (comment)))
+  (comment))
 
 ==================
 String array in arg annotation
@@ -251,19 +256,20 @@ export fn circle(
         (identifier)
         (param_list
           (comment)
-          (annotation
-            (annotation_kv
-              (identifier)
-              (identifier))
-            (annotation_kv
-              (identifier)
-              (array_expr
-                (string)
-                (string))))
           (param
+            (annotation
+              (annotation_kv
+                (identifier)
+                (boolean))
+              (annotation_kv
+                (identifier)
+                (array_expr
+                  (string)
+                  (string))))
             (identifier)
             (type_name
-              (identifier))))))))
+              (identifier))))
+        (function_body)))))
 
 ==================
 With exports
@@ -283,9 +289,10 @@ export fn circle(@x, y) { return 1 }
             (identifier))
           (param
             (identifier)))
-        (body_item
-          (return_stmt
-            (number)))))))
+        (function_body
+          (body_item
+            (return_stmt
+              (number))))))))
 
 ==================
 Function signatures
@@ -299,20 +306,21 @@ fn circle(@x: number(Length), y: number | string): string {}
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier)
-              units: (identifier)))
+              (identifier)))
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier)
               (identifier))))
         (type_name
-          (identifier))))))
+          (identifier))
+        body: (function_body)))))
 
 ==================
 Function signatures with optional
@@ -331,7 +339,8 @@ fn circle(y?: number) {}
           (param
             (identifier)
             (type_name
-              (identifier))))))))
+              (identifier))))
+        (function_body)))))
 
 ==================
 Sized array types
@@ -345,11 +354,11 @@ fn extrude(@sketches: [Sketch | [Segment; 1+]; 2+]) {}
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (array_type
                 (type_name
                   (identifier)
@@ -357,7 +366,8 @@ fn extrude(@sketches: [Sketch | [Segment; 1+]; 2+]) {}
                     (type_name
                       (identifier))
                     length: (number)))
-                length: (number)))))))))
+                length: (number)))))
+        body: (function_body)))))
 
 ==================
 Function types
@@ -371,16 +381,17 @@ fn pattern(transform: fn(number(Count)): {}) {}
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (function_type
                 (type_name
                   (identifier)
-                  units: (identifier))
-                (object_type)))))))))
+                  (identifier))
+                (object_type)))))
+        body: (function_body)))))
 
 ==================
 Function with optional
@@ -397,7 +408,8 @@ fn circle(y?) {}
         (identifier)
         (param_list
           (param
-            (identifier)))))))
+            (identifier)))
+        (function_body)))))
 
 ==================
 Single-quoted defaults
@@ -411,13 +423,14 @@ fn sweep(relativeTo?: string = 'trajectoryCurve') {}
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))
-            default: (string)))))))
+            default: (string)))
+        body: (function_body)))))
 
 ==================
 Annotation
@@ -454,19 +467,22 @@ x = if true { 1 } else if true { 0 } else { 2 }
   (body_item
     (variable_declaration
       (non_fn_definition
-        (identifier)
-        (if_expr
+        name: (identifier)
+        value: (if_expr
           condition: (boolean)
-          if_clause: (body_item
-            (expr_stmt
-              (number)))
+          if_clause: (function_body
+            (body_item
+              (expr_stmt
+                (number))))
           condition: (boolean)
-          else_if_clause: (body_item
-            (expr_stmt
-              (number)))
-          else_clause: (body_item
-            (expr_stmt
-              (number))))))))
+          else_if_clause: (function_body
+            (body_item
+              (expr_stmt
+                (number))))
+          else_clause: (function_body
+            (body_item
+              (expr_stmt
+                (number)))))))))
 
 ==================
 Params with metadata
@@ -487,14 +503,15 @@ fn planeOf(
         (identifier)
         (param_list
           (comment)
-          (annotation
-            (annotation_kv
-              (identifier)
-              (identifier)))
           (param
+            (annotation
+              (annotation_kv
+                (identifier)
+                (boolean)))
             (identifier)
             (type_name
-              (identifier))))))))
+              (identifier))))
+        (function_body)))))
 
 ==================
 Sketch block
@@ -518,130 +535,164 @@ region001 = region(segments = [sketch001.line1, sketch001.line2], direction = CW
     (variable_declaration
       (non_fn_definition
         (identifier)
-        (sketch_block
-          (labeledArg
-            (identifier)
-            (identifier))
-          (body_item
-            (variable_declaration
-              (non_fn_definition
-                (identifier)
+        (sketch_expr
+          (argument_list
+            (labeledArg
+              (identifier)
+              (identifier)))
+          (sketch_body
+            (body_item
+              (variable_declaration
+                (non_fn_definition
+                  (identifier)
+                  (fn_call
+                    (identifier)
+                    (argument_list
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit))))
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit))))))
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (number
+                              (unit)))
+                          (var_expr
+                            (number
+                              (unit))))))))))
+            (body_item
+              (expr_stmt
                 (fn_call
                   (identifier)
-                  (labeledArg
-                    (identifier)
+                  (argument_list
                     (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))
-                  (labeledArg
+                      (member_expr
+                        (identifier)
+                        (identifier))
+                      (identifier))))))
+            (body_item
+              (variable_declaration
+                (non_fn_definition
+                  (identifier)
+                  (fn_call
                     (identifier)
-                    (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))))))
-          (body_item
-            (expr_stmt
-              (fn_call
-                (identifier)
-                (array_expr
-                  (member_expr
-                    (identifier)
-                    (identifier))
-                  (identifier)))))
-          (body_item
-            (variable_declaration
-              (non_fn_definition
-                (identifier)
+                    (argument_list
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (number
+                              (unit)))
+                          (var_expr
+                            (number
+                              (unit)))))
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (number
+                              (unit)))
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit)))))))))))
+            (body_item
+              (expr_stmt
                 (fn_call
                   (identifier)
-                  (labeledArg
-                    (identifier)
+                  (argument_list
                     (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))
-                  (labeledArg
+                      (member_expr
+                        (identifier)
+                        (identifier))
+                      (member_expr
+                        (identifier)
+                        (identifier)))))))
+            (body_item
+              (variable_declaration
+                (non_fn_definition
+                  (identifier)
+                  (fn_call
                     (identifier)
-                    (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))))))
-          (body_item
-            (expr_stmt
-              (fn_call
-                (identifier)
-                (array_expr
-                  (member_expr
-                    (identifier)
-                    (identifier))
-                  (member_expr
-                    (identifier)
-                    (identifier))))))
-          (body_item
-            (variable_declaration
-              (non_fn_definition
-                (identifier)
+                    (argument_list
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (number
+                              (unit)))
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit))))))
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit))))
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit)))))))))))
+            (body_item
+              (expr_stmt
                 (fn_call
                   (identifier)
-                  (labeledArg
-                    (identifier)
+                  (argument_list
                     (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))
-                  (labeledArg
-                    (identifier)
+                      (member_expr
+                        (identifier)
+                        (identifier))
+                      (member_expr
+                        (identifier)
+                        (identifier)))))))
+            (body_item
+              (expr_stmt
+                (fn_call
+                  (identifier)
+                  (argument_list
                     (array_expr
-                      (sketch_var
-                        (number))
-                      (sketch_var
-                        (number))))))))
-          (body_item
-            (expr_stmt
-              (fn_call
-                (identifier)
-                (array_expr
-                  (member_expr
-                    (identifier)
-                    (identifier))
-                  (member_expr
-                    (identifier)
-                    (identifier))))))
-          (body_item
-            (expr_stmt
-              (fn_call
-                (identifier)
-                (array_expr
-                  (member_expr
-                    (identifier)
-                    (identifier))
-                  (member_expr
-                    (identifier)
-                    (identifier))))))))))
+                      (member_expr
+                        (identifier)
+                        (identifier))
+                      (member_expr
+                        (identifier)
+                        (identifier))))))))))))
   (body_item
     (variable_declaration
       (non_fn_definition
         (identifier)
         (fn_call
           (identifier)
-          (labeledArg
-            (identifier)
-            (array_expr
-              (member_expr
-                (identifier)
-                (identifier))
-              (member_expr
-                (identifier)
-                (identifier))))
-          (labeledArg
-            (identifier)
-            (identifier)))))))
+          (argument_list
+            (labeledArg
+              (identifier)
+              (array_expr
+                (member_expr
+                  (identifier)
+                  (identifier))
+                (member_expr
+                  (identifier)
+                  (identifier))))
+            (labeledArg
+              (identifier)
+              (identifier))))))))
 
 ==================
 Realistic subset of KCL stdlib
@@ -672,8 +723,7 @@ export fn fn_name(
 ---
 
 (kcl_program
-  (body_item
-    (comment))
+  (comment)
   (annotation
     (identifier))
   (annotation
@@ -684,15 +734,14 @@ export fn fn_name(
     (annotation_kv
       (identifier)
       (number)))
-  (body_item
-    (comment))
+  (comment)
   (annotation
     (annotation_kv
       (identifier)
       (identifier))
     (annotation_kv
       (identifier)
-      (identifier)))
+      (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
@@ -704,7 +753,8 @@ export fn fn_name(
             (type_name
               (identifier))))
         (type_name
-          (identifier))))))
+          (identifier))
+        (function_body)))))
 
 ==================
 Stdlib string.kcl
@@ -913,173 +963,172 @@ export fn toString(
 ---
 
 (kcl_program
-  (body_item
-    (comment))
+  (comment)
   (annotation
-    (identifier))
+    name: (identifier))
   (annotation
-    (identifier)
+    name: (identifier)
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (number)))
-  (body_item
-    (comment))
+      key: (identifier)
+      value: (number)))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier)))
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier)))
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))
             default: (boolean)))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier)))))
-  (body_item
-    (comment))
+          (identifier))
+        body: (function_body))))
+  (comment)
   (annotation
     (annotation_kv
-      (identifier)
-      (identifier))
+      key: (identifier)
+      value: (identifier))
     (annotation_kv
-      (identifier)
-      (identifier)))
+      key: (identifier)
+      value: (boolean)))
   (body_item
     (variable_declaration
       (fn_definition
-        (identifier)
-        (param_list
+        name: (identifier)
+        parameters: (param_list
           (comment)
           (param
-            (identifier)
-            (type_name
+            name: (identifier)
+            type: (type_name
               (identifier))))
         (type_name
-          (identifier))))))
+          (identifier))
+        body: (function_body)))))

@@ -1,0 +1,464 @@
+==================
+Named imports and aliases
+==================
+
+import baseAssembly, baseParts as parts from "base.kcl"
+import "std::math" as math
+import * from "utils.kcl"
+
+---
+
+(kcl_program
+  (body_item
+    (import_stmt
+      (import_item
+        (identifier))
+      (import_item
+        (identifier)
+        (identifier))
+      (string)))
+  (body_item
+    (import_stmt
+      (string)
+      (identifier)))
+  (body_item
+    (import_stmt
+      (string))))
+
+==================
+Named settings and parameter metadata
+==================
+
+@no_std
+@settings(defaultLengthUnit = in, kclVersion = 3.0)
+fn test(@(help = "size", includeInSnippet = true) @size: number(Length), count? = 2) { return size }
+
+---
+
+(kcl_program
+  (annotation
+    (identifier))
+  (annotation
+    (identifier)
+    (annotation_kv
+      (identifier)
+      (identifier))
+    (annotation_kv
+      (identifier)
+      (number)))
+  (body_item
+    (variable_declaration
+      (fn_definition
+        (identifier)
+        (param_list
+          (param
+            (annotation
+              (annotation_kv
+                (identifier)
+                (string))
+              (annotation_kv
+                (identifier)
+                (boolean)))
+            (identifier)
+            (type_name
+              (identifier)
+              (identifier)))
+          (param
+            (identifier)
+            (number)))
+        (function_body
+          (body_item
+            (return_stmt
+              (identifier))))))))
+
+==================
+Object and array access
+==================
+
+result = { name = 'cabinet', base = assembly.base, panel = parts[0].solid, rows = [1, 2,], }
+x = (result.panel).faces.top
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (object_expr
+          (object_property
+            (identifier)
+            (string))
+          (object_property
+            (identifier)
+            (member_expr
+              (identifier)
+              (identifier)))
+          (object_property
+            (identifier)
+            (member_expr
+              (index_expr
+                (identifier)
+                (number))
+              (identifier)))
+          (object_property
+            (identifier)
+            (array_expr
+              (number)
+              (number)))))))
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (member_expr
+          (member_expr
+            (parenthesized_expr
+              (member_expr
+                (identifier)
+                (identifier)))
+            (identifier))
+          (identifier))))))
+
+==================
+Sketch solve and adjustable values
+==================
+
+profile = sketch(on = XY) {
+ edge = line(start = [var -1mm, 0mm], end = [var 4mm, var 3mm])
+ horizontal(edge)
+ coincident([edge.end, edge.start])
+}
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (sketch_expr
+          (argument_list
+            (labeledArg
+              (identifier)
+              (identifier)))
+          (sketch_body
+            (body_item
+              (variable_declaration
+                (non_fn_definition
+                  (identifier)
+                  (fn_call
+                    (identifier)
+                    (argument_list
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (prefix_expr
+                              (prefix_operator)
+                              (number
+                                (unit))))
+                          (number
+                            (unit))))
+                      (labeledArg
+                        (identifier)
+                        (array_expr
+                          (var_expr
+                            (number
+                              (unit)))
+                          (var_expr
+                            (number
+                              (unit))))))))))
+            (body_item
+              (expr_stmt
+                (fn_call
+                  (identifier)
+                  (argument_list
+                    (identifier)))))
+            (body_item
+              (expr_stmt
+                (fn_call
+                  (identifier)
+                  (argument_list
+                    (array_expr
+                      (member_expr
+                        (identifier)
+                        (identifier))
+                      (member_expr
+                        (identifier)
+                        (identifier)))))))))))))
+
+==================
+Anonymous functions and defaults
+==================
+
+export fn parts(values, count? = 1) {
+ return map(values, f = fn(@p) {
+ x = p.solid
+ return x
+ },)
+}
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (fn_definition
+        (identifier)
+        (param_list
+          (param
+            (identifier))
+          (param
+            (identifier)
+            (number)))
+        (function_body
+          (body_item
+            (return_stmt
+              (fn_call
+                (identifier)
+                (argument_list
+                  (identifier)
+                  (labeledArg
+                    (identifier)
+                    (fn_expression
+                      (param_list
+                        (param
+                          (identifier)))
+                      (function_body
+                        (body_item
+                          (variable_declaration
+                            (non_fn_definition
+                              (identifier)
+                              (member_expr
+                                (identifier)
+                                (identifier)))))
+                        (body_item
+                          (return_stmt
+                            (identifier)))))))))))))))
+
+==================
+Ranges pipelines and namespaces
+==================
+
+x = map([0..2], f = fn(@i) { return std::math::sin(i) })
+y = x |> translate(xyz = [0in, 1in, 2in],)
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (fn_call
+          (identifier)
+          (argument_list
+            (array_expr
+              (range_expr
+                (number)
+                (number)))
+            (labeledArg
+              (identifier)
+              (fn_expression
+                (param_list
+                  (param
+                    (identifier)))
+                (function_body
+                  (body_item
+                    (return_stmt
+                      (fn_call
+                        (namespace_expr
+                          (namespace_expr
+                            (identifier)
+                            (identifier))
+                          (identifier))
+                        (argument_list
+                          (identifier)))))))))))))
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (binary_expr
+          (identifier)
+          (binary_operator)
+          (fn_call
+            (identifier)
+            (argument_list
+              (labeledArg
+                (identifier)
+                (array_expr
+                  (number
+                    (unit))
+                  (number
+                    (unit))
+                  (number
+                    (unit)))))))))))
+
+==================
+Units strings and comments
+==================
+
+/* Panel dimensions. */
+size = 2.5e-3mm
+rotation = -90deg
+text = "a\n\u0041"
+other = 'drawer\'s front'
+
+---
+
+(kcl_program
+  (block_comment)
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (number
+          (unit)))))
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (prefix_expr
+          (prefix_operator)
+          (number
+            (unit))))))
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (string
+          (escape_sequence)
+          (escape_sequence)))))
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (string
+          (escape_sequence))))))
+
+==================
+Type declarations and unions
+==================
+
+export type Color { | Red | Green | Blue }
+export type Point2d
+fn identity(@x: number(Length) | Point2d): [number; 2] { return x }
+
+---
+
+(kcl_program
+  (body_item
+    (type_declaration
+      (identifier)
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (body_item
+    (type_declaration
+      (identifier)))
+  (body_item
+    (variable_declaration
+      (fn_definition
+        (identifier)
+        (param_list
+          (param
+            (identifier)
+            (type_name
+              (identifier)
+              (identifier)
+              (identifier))))
+        (type_name
+          (array_type
+            (type_name
+              (identifier))
+            (number)))
+        (function_body
+          (body_item
+            (return_stmt
+              (identifier))))))))
+
+==================
+Legacy sketch tags and pipes
+==================
+
+profile = startSketchOn(XY)
+ |> startProfile(at = [0, 0])
+ |> line(end = [1, 0], tag = $edge)
+ |> close(%)
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (binary_expr
+          (binary_expr
+            (binary_expr
+              (fn_call
+                (identifier)
+                (argument_list
+                  (identifier)))
+              (binary_operator)
+              (fn_call
+                (identifier)
+                (argument_list
+                  (labeledArg
+                    (identifier)
+                    (array_expr
+                      (number)
+                      (number))))))
+            (binary_operator)
+            (fn_call
+              (identifier)
+              (argument_list
+                (labeledArg
+                  (identifier)
+                  (array_expr
+                    (number)
+                    (number)))
+                (labeledArg
+                  (identifier)
+                  (tag
+                    (identifier))))))
+          (binary_operator)
+          (fn_call
+            (identifier)
+            (argument_list
+              (pipe_sub))))))))
+
+==================
+Conditional expressions
+==================
+
+height = if open { 12in } else if partlyOpen { 8in } else { 4in }
+
+---
+
+(kcl_program
+  (body_item
+    (variable_declaration
+      (non_fn_definition
+        (identifier)
+        (if_expr
+          (identifier)
+          (function_body
+            (body_item
+              (expr_stmt
+                (number
+                  (unit)))))
+          (identifier)
+          (function_body
+            (body_item
+              (expr_stmt
+                (number
+                  (unit)))))
+          (function_body
+            (body_item
+              (expr_stmt
+                (number
+                  (unit))))))))))

@@ -2,17 +2,24 @@
   {
     "type": "annotation",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation_kv",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -21,25 +28,194 @@
   {
     "type": "annotation_kv",
     "named": true,
-    "fields": {},
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "argument_list",
+    "named": true,
+    "fields": {
+      "unlabeledArg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "array_expr",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "string",
+          "type": "labeledArg",
           "named": true
         }
       ]
@@ -70,6 +246,10 @@
           "named": true
         },
         {
+          "type": "fn_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -78,11 +258,27 @@
           "named": true
         },
         {
+          "type": "index_expr",
+          "named": true
+        },
+        {
           "type": "member_expr",
           "named": true
         },
         {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_expr",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expr",
           "named": true
         },
         {
@@ -94,15 +290,23 @@
           "named": true
         },
         {
-          "type": "sketch_block",
+          "type": "range_expr",
           "named": true
         },
         {
-          "type": "sketch_var",
+          "type": "sketch_expr",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "var_expr",
           "named": true
         }
       ]
@@ -159,6 +363,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -167,11 +375,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -183,15 +407,19 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
             "named": true
           }
         ]
@@ -227,6 +455,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -235,11 +467,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -251,15 +499,19 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
             "named": true
           }
         ]
@@ -275,10 +527,6 @@
       "required": true,
       "types": [
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "expr_stmt",
           "named": true
         },
@@ -288,6 +536,10 @@
         },
         {
           "type": "return_stmt",
+          "named": true
+        },
+        {
+          "type": "type_declaration",
           "named": true
         },
         {
@@ -301,6 +553,32 @@
     "type": "boolean",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "enum_variant",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "param_list",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "expr_stmt",
@@ -327,6 +605,10 @@
           "named": true
         },
         {
+          "type": "fn_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -335,11 +617,27 @@
           "named": true
         },
         {
+          "type": "index_expr",
+          "named": true
+        },
+        {
           "type": "member_expr",
           "named": true
         },
         {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_expr",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expr",
           "named": true
         },
         {
@@ -351,15 +649,19 @@
           "named": true
         },
         {
-          "type": "sketch_block",
-          "named": true
-        },
-        {
-          "type": "sketch_var",
+          "type": "sketch_expr",
           "named": true
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "var_expr",
           "named": true
         }
       ]
@@ -369,7 +671,59 @@
     "type": "fn_call",
     "named": true,
     "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
       "callee": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "fn_definition",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_body",
+            "named": true
+          }
+        ]
+      },
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -379,96 +733,21 @@
           }
         ]
       },
-      "unlabeledArg": {
-        "multiple": true,
-        "required": false,
+      "parameters": {
+        "multiple": false,
+        "required": true,
         "types": [
           {
-            "type": "array_expr",
-            "named": true
-          },
-          {
-            "type": "binary_expr",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "fn_call",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expr",
-            "named": true
-          },
-          {
-            "type": "member_expr",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "pipe_sub",
-            "named": true
-          },
-          {
-            "type": "prefix_expr",
-            "named": true
-          },
-          {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
-            "named": true
-          },
-          {
-            "type": "string",
+            "type": "param_list",
             "named": true
           }
         ]
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "labeledArg",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "fn_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "body_item",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "param_list",
-          "named": true
-        },
         {
           "type": "type_name",
           "named": true
@@ -477,20 +756,64 @@
     }
   },
   {
-    "type": "function_type",
+    "type": "fn_expression",
     "named": true,
     "fields": {
-      "units": {
+      "body": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "function_body",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "param_list",
             "named": true
           }
         ]
       }
     },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "type_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "body_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_type",
+    "named": true,
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -505,6 +828,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace_expr",
           "named": true
         },
         {
@@ -543,6 +870,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -551,11 +882,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -567,29 +914,29 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
             "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
           }
         ]
       },
       "else_clause": {
-        "multiple": true,
-        "required": false,
+        "multiple": false,
+        "required": true,
         "types": [
           {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "body_item",
+            "type": "function_body",
             "named": true
           }
         ]
@@ -599,25 +946,43 @@
         "required": false,
         "types": [
           {
-            "type": "annotation",
-            "named": true
-          },
-          {
-            "type": "body_item",
+            "type": "function_body",
             "named": true
           }
         ]
       },
       "if_clause": {
-        "multiple": true,
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_body",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import_item",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "annotation",
+            "type": "identifier",
             "named": true
-          },
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
           {
-            "type": "body_item",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -627,33 +992,23 @@
   {
     "type": "import_stmt",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "kcl_program",
-    "named": true,
-    "root": true,
     "fields": {
-      "shebang": {
+      "alias": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "shebang",
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -664,11 +1019,201 @@
       "required": false,
       "types": [
         {
+          "type": "import_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_expr",
+    "named": true,
+    "fields": {
+      "index": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "kcl_program",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
           "type": "annotation",
           "named": true
         },
         {
           "type": "body_item",
+          "named": true
+        },
+        {
+          "type": "shebang",
           "named": true
         }
       ]
@@ -699,6 +1244,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -707,11 +1256,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -723,15 +1288,19 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
             "named": true
           }
         ]
@@ -757,13 +1326,85 @@
         "required": true,
         "types": [
           {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
             "named": true
           }
         ]
       },
       "property": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -775,66 +1416,264 @@
     }
   },
   {
+    "type": "namespace_expr",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "namespace": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "non_fn_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {
+      "unit": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "object_expr",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "array_expr",
-          "named": true
-        },
-        {
-          "type": "binary_expr",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "fn_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expr",
-          "named": true
-        },
-        {
-          "type": "member_expr",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "pipe_sub",
-          "named": true
-        },
-        {
-          "type": "prefix_expr",
-          "named": true
-        },
-        {
-          "type": "sketch_block",
-          "named": true
-        },
-        {
-          "type": "sketch_var",
-          "named": true
-        },
-        {
-          "type": "string",
+          "type": "object_property",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "object_property",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -867,6 +1706,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -875,11 +1718,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -891,15 +1750,39 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_name",
             "named": true
           }
         ]
@@ -907,14 +1790,10 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "type_name",
+          "type": "annotation",
           "named": true
         }
       ]
@@ -929,15 +1808,94 @@
       "required": false,
       "types": [
         {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_expr",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "fn_call",
+          "named": true
+        },
+        {
+          "type": "fn_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "index_expr",
+          "named": true
+        },
+        {
+          "type": "member_expr",
+          "named": true
+        },
+        {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_expr",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expr",
+          "named": true
+        },
+        {
+          "type": "pipe_sub",
+          "named": true
+        },
+        {
+          "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "sketch_expr",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "var_expr",
           "named": true
         }
       ]
@@ -973,6 +1931,10 @@
             "named": true
           },
           {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -981,11 +1943,27 @@
             "named": true
           },
           {
+            "type": "index_expr",
+            "named": true
+          },
+          {
             "type": "member_expr",
             "named": true
           },
           {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
             "named": true
           },
           {
@@ -997,15 +1975,19 @@
             "named": true
           },
           {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
+            "type": "sketch_expr",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
             "named": true
           }
         ]
@@ -1026,6 +2008,176 @@
     "type": "prefix_operator",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "range_expr",
+    "named": true,
+    "fields": {
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_expr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "fn_call",
+            "named": true
+          },
+          {
+            "type": "fn_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "index_expr",
+            "named": true
+          },
+          {
+            "type": "member_expr",
+            "named": true
+          },
+          {
+            "type": "namespace_expr",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_expr",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expr",
+            "named": true
+          },
+          {
+            "type": "pipe_sub",
+            "named": true
+          },
+          {
+            "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "sketch_expr",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "var_expr",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "return_stmt",
@@ -1052,6 +2204,10 @@
           "named": true
         },
         {
+          "type": "fn_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1060,11 +2216,27 @@
           "named": true
         },
         {
+          "type": "index_expr",
+          "named": true
+        },
+        {
           "type": "member_expr",
           "named": true
         },
         {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_expr",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expr",
           "named": true
         },
         {
@@ -1076,111 +2248,67 @@
           "named": true
         },
         {
-          "type": "sketch_block",
-          "named": true
-        },
-        {
-          "type": "sketch_var",
+          "type": "sketch_expr",
           "named": true
         },
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "var_expr",
+          "named": true
         }
       ]
     }
   },
   {
-    "type": "sketch_block",
+    "type": "sketch_body",
     "named": true,
-    "fields": {
-      "unlabeledArg": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_expr",
-            "named": true
-          },
-          {
-            "type": "binary_expr",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "fn_call",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "if_expr",
-            "named": true
-          },
-          {
-            "type": "member_expr",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "pipe_sub",
-            "named": true
-          },
-          {
-            "type": "prefix_expr",
-            "named": true
-          },
-          {
-            "type": "sketch_block",
-            "named": true
-          },
-          {
-            "type": "sketch_var",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "body_item",
+          "type": "annotation",
           "named": true
         },
         {
-          "type": "labeledArg",
+          "type": "body_item",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "sketch_var",
+    "type": "sketch_expr",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "number",
-          "named": true
-        }
-      ]
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "argument_list",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sketch_body",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1199,12 +2327,27 @@
     }
   },
   {
-    "type": "type_name",
+    "type": "tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_declaration",
     "named": true,
     "fields": {
-      "units": {
-        "multiple": true,
-        "required": false,
+      "name": {
+        "multiple": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
@@ -1213,6 +2356,25 @@
         ]
       }
     },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "enum_variant",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_name",
+    "named": true,
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -1230,7 +2392,98 @@
           "named": true
         },
         {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
           "type": "object_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "var_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_expr",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "fn_call",
+          "named": true
+        },
+        {
+          "type": "fn_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "index_expr",
+          "named": true
+        },
+        {
+          "type": "member_expr",
+          "named": true
+        },
+        {
+          "type": "namespace_expr",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_expr",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expr",
+          "named": true
+        },
+        {
+          "type": "pipe_sub",
+          "named": true
+        },
+        {
+          "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "sketch_expr",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "var_expr",
           "named": true
         }
       ]
@@ -1264,6 +2517,10 @@
     "named": false
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -1277,6 +2534,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
     "named": false
   },
   {
@@ -1296,7 +2557,15 @@
     "named": false
   },
   {
+    "type": "..",
+    "named": false
+  },
+  {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
     "named": false
   },
   {
@@ -1324,7 +2593,15 @@
     "named": false
   },
   {
+    "type": "[]",
+    "named": false
+  },
+  {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "_",
     "named": false
   },
   {
@@ -1336,15 +2613,17 @@
     "named": true
   },
   {
+    "type": "block_comment",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "else",
-    "named": false
-  },
-  {
-    "type": "else if",
     "named": false
   },
   {
@@ -1380,10 +2659,6 @@
     "named": false
   },
   {
-    "type": "number",
-    "named": true
-  },
-  {
     "type": "return",
     "named": false
   },
@@ -1398,6 +2673,14 @@
   {
     "type": "true",
     "named": false
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "unit",
+    "named": true
   },
   {
     "type": "var",
